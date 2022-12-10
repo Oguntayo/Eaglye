@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import django_heroku
+import dj_database_url
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,9 +32,9 @@ ACCESS_TOKEN_SECRET = "Nc39YTzlzKuUbjvl0d6rXQvVtiMa8RVD4qOStJ0XvMCRm"
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['192.168.0.102']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -140,7 +143,7 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
 
-
+STATIC_ROOT =os.path.join(BASE_DIR,'staticfiles')
 MEDIA_ROOT = BASE_DIR / 'static/images'
 
 # Default primary key field type
@@ -150,3 +153,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 CORS_ALLOW_ALL_ORIGINS = True
+django_heroku.settings(locals())
